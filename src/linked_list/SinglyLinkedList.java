@@ -146,7 +146,6 @@ public class SinglyLinkedList {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        SinglyLinkedList list = new SinglyLinkedList();
         int choice;
 
         do {
