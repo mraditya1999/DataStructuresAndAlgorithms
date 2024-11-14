@@ -12,7 +12,10 @@ public class SinglyLinkedList {
     }
 
     public static void insertBeforeElement(int data, int key) {
-        if (head == null) return;
+        if (head == null) {
+
+            return;
+        }
 
         Node newNode = new Node(data);
         Node curr = head;
@@ -29,10 +32,8 @@ public class SinglyLinkedList {
             curr = curr.next;
         }
 
-        if (prev != null) {
-            prev.next = newNode;
-            newNode.next = curr;
-        }
+        prev.next = newNode;
+        newNode.next = curr;
     }
 
     public static void insertAfterElement(int data, int key) {

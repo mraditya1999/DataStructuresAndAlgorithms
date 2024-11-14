@@ -1,51 +1,43 @@
 package linked_list;
 
-
-public class DoublyLinkedList {
-    private Node head;
+public class DoublyCircularLinkedList {
+    Node head;
 
     public void insertFirst(int value) {
         Node newNode = new Node(value);
 
         if (head == null) {
             head = newNode;
+            newNode.prev = head;
+            newNode.next = head;
             return;
         }
+
+        Node curr = head.prev;
         newNode.next = head;
         head = newNode;
+        head.prev = curr;
+        curr.next = head;
     }
 
     public void insertLast(int value) {
         Node newNode = new Node(value);
+
         if (head == null) {
             head = newNode;
+            newNode.prev = head;
+            newNode.next = head;
             return;
         }
-        Node curr = head;
-        while (curr.next != null) {
-            curr = curr.next;
-        }
+
+        Node curr = head.prev;
         curr.next = newNode;
         newNode.prev = curr;
-        curr = curr.next;
+        newNode.next = head;
+        head.prev = newNode;
     }
 
     public void removeFirst() {
-        if (head == null) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        if (head.next == null) {
-            head = null;
-            return;
-        }
-        head = head.next;
-        head.prev = null;
-
-    }
-
-    public void removeLast() {
         if (head == null) return;
 
         if (head.next == null) {
@@ -53,42 +45,52 @@ public class DoublyLinkedList {
             return;
         }
 
-        Node curr = head;
-        Node prev = head;
-        while (curr.next != null) {
-            prev = curr;
-            curr = curr.next;
-        }
-        prev.next = null;
+        Node last = head.prev;
+        head = head.next;
+        last.next = head.next;
+        head.prev = last;
     }
 
-    public void display() {
-        if (head == null) {
-            System.out.println("List is empty");
+    public void removeLast() {
+        if (head == null) return;
+        if (head.next == null) {
+            head = null;
             return;
         }
 
+        Node secondLast = head.prev.prev;
+        secondLast.next = head;
+        head.prev = secondLast;
+    }
+
+    public void display() {
         Node curr = head;
-        while (curr != null) {
+        while (curr.next != head) {
             System.out.print(curr.value + " ");
             curr = curr.next;
         }
-        System.out.println();
+        System.out.println(curr.value);
     }
 
-    public static void main(String[] args) {
-        DoublyLinkedList list = new DoublyLinkedList();
 
-        list.insertFirst(1);
-        list.insertFirst(2);
+    public static void main(String[] args) {
+        DoublyCircularLinkedList list = new DoublyCircularLinkedList();
+
         list.insertFirst(3);
+        list.insertFirst(2);
+        list.insertFirst(1);
+
+        list.display();
+
         list.insertLast(4);
+        list.insertLast(5);
+        list.insertLast(6);
+
         list.display();
 
         list.removeFirst();
-        list.display();
-
         list.removeLast();
+
         list.display();
     }
 }
