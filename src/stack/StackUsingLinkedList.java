@@ -1,64 +1,89 @@
 package stack;
 
-
 import java.util.Scanner;
 
-public class StackUsingArray {
-    int top;
-    int[] arr;
-    int size;
+class Node {
+    int data;
+    Node next;
 
-    StackUsingArray(int size) {
-        this.top = -1;
-        this.arr = new int[size];
-        this.size = size;
+    Node(int data) {
+        this.data = data;
+        this.next = null;
     }
+}
 
-    public void push(int value) {
-        if (isFull()) {
-            System.out.println("Stack Overflow");
+public class StackUsingLinkedList {
+    private Node head;
+    Node top;
+
+    public void push(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            top = newNode;
             return;
         }
-        arr[++top] = value;
+
+        top.next = newNode;
+        top = newNode;
     }
 
     public int pop() {
-        if (isEmpty()) {
-            System.out.println("Stack Underflow");
+        if (head == null) {
+            System.out.println("Stack Underflow!");
             return -1;
         }
-        return arr[top--];
+
+        if (head.next == null) {
+            int value = top.data;
+            head = null;
+            top = null;
+            return value;
+        }
+
+        Node curr = head;
+        Node prev = head;
+        while (curr.next != null) {
+            prev = curr;
+            curr = curr.next;
+        }
+        int value = top.data;
+        top = prev;
+        prev.next = null;
+        return value;
     }
 
     public int peek() {
         if (isEmpty()) {
-            System.out.println("Stack Underflow");
+            System.out.println("Stack Underflow!");
             return -1;
         }
-        return arr[top];
+
+        return top.data;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 
     public void displayStack() {
         if (isEmpty()) {
-            System.out.println("Stack Underflow");
+            System.out.println("Stack Underflow!");
             return;
         }
-        for (int i = 0; i <= top; i++) {
-            System.out.print(arr[i] + " ");
+
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " ");
+            curr = curr.next;
         }
-    }
-
-    public boolean isEmpty() {
-        return top == -1;
-    }
-
-    public boolean isFull() {
-        return top == size - 1;
+        System.out.println();
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        StackUsingArray stack = new StackUsingArray(10);
+        StackUsingLinkedList stack = new StackUsingLinkedList();
         int choice;
 
         do {
@@ -83,6 +108,7 @@ public class StackUsingArray {
                 case 4:
                     stack.displayStack();
                     break;
+
                 case 5:
                     System.out.println("Exiting...");
                     break;
