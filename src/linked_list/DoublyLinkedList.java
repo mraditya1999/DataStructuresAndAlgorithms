@@ -101,7 +101,7 @@ public class DoublyLinkedList {
     }
 
     public static void removeBeforeElement(int key) {
-        if (head == null || head.next == null) return;
+        if (head == null || head.next == null || head.value == key) return;
 
         Node curr = head;
         while (curr != null && curr.value != key) {
@@ -110,8 +110,11 @@ public class DoublyLinkedList {
 
         if (curr == null || curr.prev == null || curr.prev.prev == null) return;
 
-        curr.prev.prev.next = curr;
-        curr.prev = curr.prev.prev;
+        // Remove the node before curr
+        Node nodeToRemove = curr.prev;
+        Node prevOfNodeToRemove = nodeToRemove.prev;
+        prevOfNodeToRemove.next = curr;
+        curr.prev = prevOfNodeToRemove;
     }
 
     public static void removeAfterElement(int key) {
