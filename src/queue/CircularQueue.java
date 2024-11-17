@@ -29,7 +29,7 @@ public class CircularQueue {
 
     public int dequeue() {
         if (isEmpty()) {
-            System.out.println("Queue is Empty");
+            System.out.println("Queue Underflow");
             return -1;
         }
         int value = arr[front];
@@ -42,7 +42,7 @@ public class CircularQueue {
 
     public int peek() {
         if (isEmpty()) {
-            System.out.println("Queue is Empty");
+            System.out.println("Queue Underflow");
             return -1;
         }
         return arr[front];
@@ -50,7 +50,7 @@ public class CircularQueue {
 
     public void displayQueue() {
         if (isEmpty()) {
-            System.out.println("Queue is Empty");
+            System.out.println("Queue Underflow");
             return;
         }
 
@@ -75,7 +75,7 @@ public class CircularQueue {
     }
 
     public boolean isFull() {
-        return (front == 0 && rear == size - 1) || (front - 1 == rear);
+        return (front == (rear + 1) % size);
     }
 
     public static void main(String[] args) {
