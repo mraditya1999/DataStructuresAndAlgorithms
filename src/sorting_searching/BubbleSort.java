@@ -14,24 +14,25 @@ public class BubbleSort {
         System.out.print("Before: ");
         ArrayOperations.printArray(arr, length);
 
-        bubbleSort(arr, length);
+        bubbleSortMethod1(arr, length);
 
         System.out.print("After: ");
         ArrayOperations.printArray(arr, length);
 
     }
 
-    public static void bubbleSort(int[] arr, int length) {
-        boolean flag;
-        for (int i = 0; i < length - 1; i++) {
-            flag = false;
-            for (int j = 0; j < length - 1 - i; j++) {
+    public static void bubbleSortMethod1(int[] arr, int length) {
+        int count = 0;
+        for (int i = 0; i < length; i++) {
+            count++;
+            for (int j = 0; j < length - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    ArrayOperations.swap(arr, j, j + 1);
-                    flag = true;
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j] = temp;
                 }
             }
-            if (!flag) break;
         }
+        System.out.println(count);
     }
 }
