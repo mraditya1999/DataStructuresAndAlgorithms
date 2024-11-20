@@ -2,7 +2,7 @@ package sorting_searching;
 
 import arrays.ArrayOperations;
 
-public class BubbleSort {
+public class SelectionSort {
     public static void main(String[] args) {
         int length = ArrayOperations.getArrayLength();
 
@@ -14,38 +14,43 @@ public class BubbleSort {
         System.out.print("Before: ");
         ArrayOperations.printArray(arr, length);
 
-//        bubbleSort(arr, length);
-        bubbleSortOptimized(arr, length);
+//        selectionSort(arr, length);
+        selectionSortOptimized(arr, length);
 
         System.out.print("After: ");
         ArrayOperations.printArray(arr, length);
     }
 
-    public static void bubbleSort(int[] arr, int length) {
+    public static void selectionSort(int[] arr, int length) {
         int count = 0;
         for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length - 1; j++) {
+            int smallest = i;
+            for (int j = i + 1; j < length; j++) {
                 count++;
-                if (arr[j] > arr[j + 1]) {
-                    ArrayOperations.swap(arr, j, j + 1);
+                if (arr[smallest] > arr[j]) {
+                    smallest = j;
                 }
             }
+            ArrayOperations.swap(arr, smallest, i);
         }
         System.out.println("No of Iterations: " + count);
     }
 
 
-    public static void bubbleSortOptimized(int[] arr, int length) {
+    public static void selectionSortOptimized(int[] arr, int length) {
         int count = 0;
         for (int i = 0; i < length; i++) {
             boolean flag = true;
-            for (int j = 0; j < length - 1 - i; j++) {
+            int smallest = i;
+            for (int j = i + 1; j < length; j++) {
                 count++;
-                if (arr[j] > arr[j + 1]) {
-                    ArrayOperations.swap(arr, j, j + 1);
+                if (arr[smallest] > arr[j]) {
                     flag = false;
+                    smallest = j;
                 }
             }
+            if (smallest != i)
+                ArrayOperations.swap(arr, smallest, i);
             if (flag) break;
         }
         System.out.println("No of Iterations: " + count);
