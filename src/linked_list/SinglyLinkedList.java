@@ -3,7 +3,7 @@ package linked_list;
 import java.util.Scanner;
 
 public class SinglyLinkedList {
-    private static Node head;
+    static Node head;
 
     public static void insertAtBeginning(int data) {
         Node newNode = new Node(data);
