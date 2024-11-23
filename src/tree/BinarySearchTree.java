@@ -117,9 +117,5 @@ public class BinarySearchTree {
 
         System.out.println("LevelOrder: ");
         levelOrder(root);
-
-//        System.out.println("After remove: ");
-//        root = remove(root, 8);
-//        inorder(root);
     }
 }
