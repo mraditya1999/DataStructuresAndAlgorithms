@@ -1,6 +1,6 @@
 package linked_list;
 
-class Node {
+public class Node {
     int value;
     Node next;
     Node prev;

@@ -40,13 +40,13 @@ public class RemoveDuplicateElements {
 
     public static void removeDuplicateElements(Node head) {
         if (head == null || head.next == null) return;
-    
+
         // Step 1: Sort the list
         SortLinkedList.sortLinkedList(head);
 
         // Step 2: Remove duplicates
         Node currNode = head;
-        while (currNode != null && currNode.next != null) {
+        while (currNode.next != null) {
             if (currNode.value == currNode.next.value) {
                 currNode.next = currNode.next.next;
             } else {
