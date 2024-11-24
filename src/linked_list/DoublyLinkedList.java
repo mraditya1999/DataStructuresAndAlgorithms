@@ -4,9 +4,9 @@ package linked_list;
 import java.util.Scanner;
 
 public class DoublyLinkedList {
-    private static Node head;
+    private Node head;
 
-    public static void insertAtBeginning(int value) {
+    public void insertAtBeginning(int value) {
         Node newNode = new Node(value);
 
         if (head == null) {
@@ -17,7 +17,7 @@ public class DoublyLinkedList {
         head = newNode;
     }
 
-    public static void insertAtEnd(int value) {
+    public void insertAtEnd(int value) {
         Node newNode = new Node(value);
         if (head == null) {
             head = newNode;
@@ -32,7 +32,7 @@ public class DoublyLinkedList {
         curr = curr.next;
     }
 
-    public static void insertBeforeElement(int value, int key) {
+    public void insertBeforeElement(int value, int key) {
         Node newNode = new Node(value);
         if (head == null) return;
 
@@ -51,7 +51,7 @@ public class DoublyLinkedList {
         curr.prev = newNode;
     }
 
-    public static void insertAfterElement(int value, int key) {
+    public void insertAfterElement(int value, int key) {
         Node newNode = new Node(value);
         if (head == null) return;
 
@@ -68,7 +68,7 @@ public class DoublyLinkedList {
         newNode.prev = curr;
     }
 
-    public static void removeFromBeginning() {
+    public void removeFromBeginning() {
         if (head == null) {
             System.out.println("List is empty");
             return;
@@ -83,7 +83,7 @@ public class DoublyLinkedList {
 
     }
 
-    public static void removeFromEnd() {
+    public void removeFromEnd() {
         if (head == null) return;
 
         if (head.next == null) {
@@ -100,7 +100,7 @@ public class DoublyLinkedList {
         prev.next = null;
     }
 
-    public static void removeBeforeElement(int key) {
+    public void removeBeforeElement(int key) {
         if (head == null || head.next == null || head.value == key) return;
 
         Node curr = head;
@@ -117,7 +117,7 @@ public class DoublyLinkedList {
         curr.prev = prevOfNodeToRemove;
     }
 
-    public static void removeAfterElement(int key) {
+    public void removeAfterElement(int key) {
         if (head == null || head.next == null) return;
 
         Node curr = head;
@@ -131,7 +131,7 @@ public class DoublyLinkedList {
         if (curr.next != null) curr.next.prev = curr;
     }
 
-    public static void removeByValue(int key) {
+    public void removeByValue(int key) {
         if (head == null) return;
 
         if (head.value == key) {
@@ -153,7 +153,7 @@ public class DoublyLinkedList {
         curr.next.prev = prev;
     }
 
-    public static void display() {
+    public void display() {
         if (head == null) {
             System.out.println("List is empty");
             return;
@@ -169,6 +169,7 @@ public class DoublyLinkedList {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        DoublyLinkedList list = new DoublyLinkedList();
         int choice;
 
         do {
@@ -180,49 +181,49 @@ public class DoublyLinkedList {
 
                 case 1:
                     System.out.print("Insert value at beginning: ");
-                    insertAtBeginning(sc.nextInt());
+                    list.insertAtBeginning(sc.nextInt());
                     break;
 
                 case 2:
                     System.out.print("Insert value at end: ");
-                    insertAtEnd(sc.nextInt());
+                    list.insertAtEnd(sc.nextInt());
                     break;
 
                 case 3:
                     System.out.print("Insert value and key to insert before element: ");
-                    insertBeforeElement(sc.nextInt(), sc.nextInt());
+                    list.insertBeforeElement(sc.nextInt(), sc.nextInt());
                     break;
 
                 case 4:
                     System.out.print("Insert value and key to insert after element: ");
-                    insertAfterElement(sc.nextInt(), sc.nextInt());
+                    list.insertAfterElement(sc.nextInt(), sc.nextInt());
                     break;
 
                 case 5:
-                    removeFromBeginning();
+                    list.removeFromBeginning();
                     break;
 
                 case 6:
-                    removeFromEnd();
+                    list.removeFromEnd();
                     break;
 
                 case 7:
                     System.out.print("Insert key to remove before element: ");
-                    removeBeforeElement(sc.nextInt());
+                    list.removeBeforeElement(sc.nextInt());
                     break;
 
                 case 8:
                     System.out.print("Insert key to remove after element: ");
-                    removeAfterElement(sc.nextInt());
+                    list.removeAfterElement(sc.nextInt());
                     break;
 
                 case 9:
                     System.out.print("Insert value to remove: ");
-                    removeByValue(sc.nextInt());
+                    list.removeByValue(sc.nextInt());
                     break;
 
                 case 10:
-                    display();
+                    list.display();
                     break;
 
                 default:

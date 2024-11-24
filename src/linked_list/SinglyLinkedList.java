@@ -3,15 +3,15 @@ package linked_list;
 import java.util.Scanner;
 
 public class SinglyLinkedList {
-    static Node head;
+    Node head;
 
-    public static void insertAtBeginning(int data) {
+    public void insertAtBeginning(int data) {
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
     }
 
-    public static void insertBeforeElement(int data, int key) {
+    public void insertBeforeElement(int data, int key) {
         if (head == null) {
 
             return;
@@ -36,7 +36,7 @@ public class SinglyLinkedList {
         newNode.next = curr;
     }
 
-    public static void insertAfterElement(int data, int key) {
+    public void insertAfterElement(int data, int key) {
         if (head == null) return;
 
         Node newNode = new Node(data);
@@ -52,7 +52,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public static void insertAtEnd(int data) {
+    public void insertAtEnd(int data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -65,12 +65,12 @@ public class SinglyLinkedList {
         }
     }
 
-    public static void removeFromBeginning() {
+    public void removeFromBeginning() {
         if (head == null) return;
         head = head.next;
     }
 
-    public static void removeFromEnd() {
+    public void removeFromEnd() {
         if (head == null) return;
         if (head.next == null) {
             head = null;
@@ -85,7 +85,7 @@ public class SinglyLinkedList {
         prev.next = null;
     }
 
-    public static void removeBeforeElement(int key) {
+    public void removeBeforeElement(int key) {
         if (head == null || head.next == null || head.value == key) return;
 
         Node prevPrev = null;
@@ -105,7 +105,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public static void removeAfterElement(int key) {
+    public void removeAfterElement(int key) {
         if (head == null) return;
 
         Node curr = head;
@@ -118,7 +118,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public static void removeByValue(int key) {
+    public void removeByValue(int key) {
         if (head == null) return;
         if (head.value == key) {
             head = head.next;
@@ -134,18 +134,22 @@ public class SinglyLinkedList {
         prev.next = curr.next;
     }
 
-    public static void display() {
-        if (head == null) return;
+    public void display() {
+        if (head == null) {
+            System.out.println("List is Empty!!");
+            return;
+        }
         Node curr = head;
         while (curr != null) {
-            System.out.print(curr.value + " ");
+            System.out.print(curr.value + "->");
             curr = curr.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        SinglyLinkedList list = new SinglyLinkedList();
         int choice;
 
         do {
@@ -157,49 +161,49 @@ public class SinglyLinkedList {
 
                 case 1:
                     System.out.print("Insert value at beginning: ");
-                    insertAtBeginning(sc.nextInt());
+                    list.insertAtBeginning(sc.nextInt());
                     break;
 
                 case 2:
                     System.out.print("Insert value at end: ");
-                    insertAtEnd(sc.nextInt());
+                    list.insertAtEnd(sc.nextInt());
                     break;
 
                 case 3:
                     System.out.print("Insert value and key to insert before element: ");
-                    insertBeforeElement(sc.nextInt(), sc.nextInt());
+                    list.insertBeforeElement(sc.nextInt(), sc.nextInt());
                     break;
 
                 case 4:
                     System.out.print("Insert value and key to insert after element: ");
-                    insertAfterElement(sc.nextInt(), sc.nextInt());
+                    list.insertAfterElement(sc.nextInt(), sc.nextInt());
                     break;
 
                 case 5:
-                    removeFromBeginning();
+                    list.removeFromBeginning();
                     break;
 
                 case 6:
-                    removeFromEnd();
+                    list.removeFromEnd();
                     break;
 
                 case 7:
                     System.out.print("Insert key to remove before element: ");
-                    removeBeforeElement(sc.nextInt());
+                    list.removeBeforeElement(sc.nextInt());
                     break;
 
                 case 8:
                     System.out.print("Insert key to remove after element: ");
-                    removeAfterElement(sc.nextInt());
+                    list.removeAfterElement(sc.nextInt());
                     break;
 
                 case 9:
                     System.out.print("Insert value to remove: ");
-                    removeByValue(sc.nextInt());
+                    list.removeByValue(sc.nextInt());
                     break;
 
                 case 10:
-                    display();
+                    list.display();
                     break;
 
                 default:

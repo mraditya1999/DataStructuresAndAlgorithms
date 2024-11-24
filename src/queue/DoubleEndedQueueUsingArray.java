@@ -2,13 +2,13 @@ package queue;
 
 import java.util.Scanner;
 
-public class DoubleEndedQueue {
+public class DoubleEndedQueueUsingArray {
     int front;
     int rear;
     int[] arr;
     int size;
 
-    public DoubleEndedQueue(int size) {
+    public DoubleEndedQueueUsingArray(int size) {
         this.size = size;
         this.arr = new int[size];
         this.front = -1;
@@ -90,6 +90,49 @@ public class DoubleEndedQueue {
                     System.out.println("Invalid choice");
             }
         } while (choice != 5);
+    }
+
+    public void doubleEndedQueue() {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println();
+            System.out.println("1. Insert At Left\t2. Insert At Right\t3. Remove From Left\t4. Remove From Right\t5. Display\t6. Quit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter element: ");
+                    insertAtLeft(sc.nextInt());
+                    break;
+
+                case 2:
+                    System.out.print("Enter element: ");
+                    insertAtRight(sc.nextInt());
+                    break;
+
+                case 3:
+                    removeFromLeft();
+                    break;
+
+                case 4:
+                    removeFromRight();
+                    break;
+
+                case 5:
+                    displayDequeue();
+                    break;
+
+                case 6:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice != 6);
     }
 
     public void insertAtLeft(int value) {
@@ -182,12 +225,12 @@ public class DoubleEndedQueue {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        DoubleEndedQueue dequeue = new DoubleEndedQueue(10);
+        DoubleEndedQueueUsingArray dequeue = new DoubleEndedQueueUsingArray(10);
         int choice;
 
         do {
             System.out.println();
-            System.out.println("1. Input restricted Dequeue\t2. Output restricted Dequeue\t3. Display\t4. Exit\t");
+            System.out.println("1. Input restricted Dequeue\t2. Output restricted Dequeue\t3.Dequeue\t4. Display\t5. Exit\t");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
 
@@ -201,12 +244,20 @@ public class DoubleEndedQueue {
                     break;
 
                 case 3:
+                    dequeue.doubleEndedQueue();
+                    break;
+
+                case 4:
+                    dequeue.displayDequeue();
+                    break;
+
+                case 5:
                     System.out.println("Exiting...");
                     break;
 
                 default:
                     System.out.println("Invalid choice");
             }
-        } while (choice != 3);
+        } while (choice != 5);
     }
 }

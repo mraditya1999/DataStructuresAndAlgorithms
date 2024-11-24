@@ -3,7 +3,7 @@ package linked_list;
 import java.util.Scanner;
 
 public class SinglyCircularLinkedList {
-    private Node head;
+    Node head;
 
     public void insertAtBeginning(int value) {
         Node newNode = new Node(value);

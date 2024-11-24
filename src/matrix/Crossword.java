@@ -1,20 +1,28 @@
 package matrix;
 
+import java.util.Scanner;
+
 public class Crossword {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-//        String veticalString = "INDIA";
-//        int row = 3;
-//        int col = 5;
-//
-//        String horizontalString = "GOA";
-        String veticalString = "CAT";
-        int row = 1;
-        int col = 2;
+        System.out.println("Enter the vertical string:");
+        String verticalString = scanner.nextLine();
 
-        String horizontalString = "BALL";
-        char[][] crossword = createCrossword(veticalString, row, col, horizontalString);
+        System.out.println("Enter the row index for the vertical string:");
+        int row = scanner.nextInt();
+
+        System.out.println("Enter the column index for the vertical string:");
+        int col = scanner.nextInt();
+
+        System.out.println("Enter the horizontal string:");
+        scanner.nextLine(); // consume the newline character
+        String horizontalString = scanner.nextLine();
+
+        char[][] crossword = createCrossword(verticalString, row, col, horizontalString);
         displayCrossword(crossword);
+
+        scanner.close();
     }
 
     public static char[][] createCrossword(String verticalString, int row, int col, String horizontalString) {
@@ -32,7 +40,7 @@ public class Crossword {
             crossword[row + i][col] = verticalString.charAt(i);
         }
 
-//        Find intersection index
+        // Find intersection index
         int intersectionIndex = -1;
         for (int i = 0; i < verticalString.length(); i++) {
             for (int j = 0; j < horizontalString.length(); j++) {
@@ -48,8 +56,12 @@ public class Crossword {
         }
 
         // Place horizontal string
-        for (int j = 0; j < horizontalString.length(); j++) {
-            crossword[row][col - intersectionIndex + j] = horizontalString.charAt(j);
+        if (intersectionIndex != -1) {
+            for (int j = 0; j < horizontalString.length(); j++) {
+                crossword[row][col - intersectionIndex + j] = horizontalString.charAt(j);
+            }
+        } else {
+            System.out.println("No common intersection character found.");
         }
 
         return crossword;
@@ -57,7 +69,7 @@ public class Crossword {
 
     public static void displayCrossword(char[][] crossword) {
         for (int i = 0; i < crossword.length; i++) {
-            for (int j = 0; j < crossword.length; j++) {
+            for (int j = 0; j < crossword[i].length; j++) {
                 System.out.print(crossword[i][j] + " ");
             }
             System.out.println();
