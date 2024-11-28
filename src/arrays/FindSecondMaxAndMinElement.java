@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.Arrays;
+
 public class FindSecondMaxAndMinElement {
     public static void main(String[] args) {
         int length = ArrayOperations.getArrayLength();
@@ -37,7 +39,7 @@ public class FindSecondMaxAndMinElement {
     }
 
     public static int findSecondMinElementMethod2(int[] arr, int length) {
-        SortArray.sortArray(arr, length);
+        Arrays.sort(arr, 0, length);
         return arr[1];
     }
 
@@ -57,7 +59,8 @@ public class FindSecondMaxAndMinElement {
     }
 
     public static int findSecondMaxElementMethod2(int[] arr, int length) {
-        SortArray.sortArray(arr, length);
+        Arrays.sort(arr, 0, length);
         return arr[length - 2];
     }
 }
+
