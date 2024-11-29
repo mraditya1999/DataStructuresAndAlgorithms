@@ -1,4 +1,6 @@
-package arrays;
+package arrays.two_pointers;
+
+import arrays.ArrayOperations;
 
 public class ZeroesAndOnes {
     public static void main(String[] args) {
@@ -53,17 +55,6 @@ public class ZeroesAndOnes {
                 start++;
                 end--;
             }
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            boolean flag = false;
-            for (int j = 0; j < arr.length - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    ArrayOperations.swap(arr, j, j + 1);
-                    flag = true;
-                }
-            }
-            if (!flag) break;
         }
     }
 }
