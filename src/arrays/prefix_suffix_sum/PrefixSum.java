@@ -7,37 +7,41 @@ import java.util.Arrays;
 public class PrefixSum {
     public static void main(String[] args) {
         int length = ArrayOperations.getArrayLength();
-
         int[] arr = ArrayOperations.initializeArray(length);
 
-        System.out.print("Enter " + length + " Elements:");
+        System.out.print("Enter " + length + " elements: ");
         ArrayOperations.populateArray(arr, length);
 
-        System.out.print("Before: ");
-        ArrayOperations.printArray(arr, length);
-
-//        getPrefixSumMethod1(arr, length);
-        getPrefixSumMethod2(arr, length);
-
-        System.out.print("After: ");
-        ArrayOperations.printArray(arr, length);
+        //int[] prefix_sum = calculatePrefixSumMethod1(arr, length);
+        // int[] prefix_sum = calculatePrefixSumMethod2(arr, length);
+        int[] prefix_sum = calculatePrefixSumMethod3(arr, length);
+        ArrayOperations.printArray(prefix_sum, length);
     }
 
-    public static void getPrefixSumMethod1(int[] arr, int length) {
-        int[] temp = new int[length];
-        temp[0] = arr[0];
+    //    Given an integer array 'a', calculate prefix sum in the same array without creating a new array.
+    static int[] calculatePrefixSumMethod1(int[] arr, int length) {
+        int[] prefix_sum = new int[length];
+        prefix_sum[0] = arr[0];
+
         for (int i = 1; i < length; i++) {
-            temp[i] = arr[i] + temp[i - 1];
+            prefix_sum[i] = prefix_sum[i - 1] + arr[i];
         }
-        ArrayOperations.printArray(temp, length);
+        return prefix_sum;
+    }
+
+    static int[] calculatePrefixSumMethod2(int[] arr, int length) {
+        int sum = 0;
         for (int i = 0; i < length; i++) {
-            arr[i] = temp[i];
+            sum = sum + arr[i];
+            arr[i] = sum;
         }
+        return arr;
     }
 
-    public static void getPrefixSumMethod2(int[] arr, int length) {
+    static int[] calculatePrefixSumMethod3(int[] arr, int length) {
         for (int i = 1; i < length; i++) {
-            arr[i] = arr[i] + arr[i - 1];
+            arr[i] += arr[i - 1];
         }
+        return arr;
     }
 }
