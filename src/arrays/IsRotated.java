@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class IsRotated {
     public static void main(String[] args) {
-        int arr1[] = {1, 2, 3, 4, 5};
+        int[] arr1 = {1, 2, 3, 4, 5};
         int[] arr2 = {4, 5, 1, 2, 3};
         boolean isRotated = isRotatedRightMethod1(arr1, arr2);
         System.out.println("Is Rotated: " + isRotated);
@@ -44,7 +44,7 @@ public class IsRotated {
             concatenated[i + length] = arr2[i];
         }
 
-        // Check if arr1 is a subarray of concatenated array
+        // Check if arr1 is a sub-array of concatenated array
         for (int i = 0; i < length; i++) {
             boolean isMatch = true;
             for (int j = 0; j < length; j++) {

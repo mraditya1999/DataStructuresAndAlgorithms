@@ -26,11 +26,11 @@ public class RotateArray {
 
         switch (choice) {
             case 1:
-                rotateClockwiseMethod2(arr, length, k);
+                rotateClockwiseMethod3(arr, length, k);
                 break;
 
             case 2:
-                rotateAntiClockwiseMethod2(arr, length, k);
+                rotateAntiClockwiseMethod3(arr, length, k);
                 break;
         }
 
@@ -80,12 +80,53 @@ public class RotateArray {
         }
     }
 
+    public static void rotateClockwiseMethod3(int[] arr, int length, int k) {
+        k = k % length;
+        int[] temp = new int[length];
+
+        //arr = 1 2 3 4 5 ,k=2;
+        for (int i = 0; i < length; i++) {
+            temp[(i + k) % length] = arr[i];
+            // 0 0 1 0 0
+            // 0 0 1 2 0
+            // 0 0 1 2 3
+            // 4 0 1 2 3
+            // 4 5 1 2 3
+        }
+
+        // Copy elements from temp back to arr
+        for (int i = 0; i < length; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
     public static void rotateAntiClockwiseMethod2(int[] arr, int length, int k) {
         k = k % length;
         if (k != 0) {
             reverseArray(arr, 0, length);
             reverseArray(arr, 0, length - k - 1);
             reverseArray(arr, length - k, length);
+        }
+    }
+
+    public static void rotateAntiClockwiseMethod3(int[] arr, int length, int k) {
+        k = k % length;
+        int[] temp = new int[length];
+
+        //arr = 1 2 3 4 5 ,k=2;
+        // 3 4 5 1 2
+        for (int i = 0; i < length; i++) {
+            temp[(i + (length - k)) % length] = arr[i];
+            // 0 0 0 1 0
+            // 0 0 0 1 2
+            // 3 0 0 1 2
+            // 3 4 0 2 3
+            // 3 4 5 1 2
+        }
+
+        // Copy elements from temp back to arr
+        for (int i = 0; i < length; i++) {
+            arr[i] = temp[i];
         }
     }
 }
