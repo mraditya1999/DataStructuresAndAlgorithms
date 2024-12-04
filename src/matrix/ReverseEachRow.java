@@ -6,11 +6,11 @@ public class ReverseEachRow {
         int noOfColumns = MatrixOperations.getNoOfColumns();
         int[][] matrix = MatrixOperations.readMatrix(noOfRows, noOfColumns);
 
-        int[][] reversedMatrix = reverseMatrix(matrix, noOfRows, noOfColumns);
+        int[][] reversedMatrix = reverseEachRowMatrix(matrix, noOfRows, noOfColumns);
         MatrixOperations.printMatrix(reversedMatrix, noOfRows);
     }
 
-    public static int[][] reverseMatrix(int[][] matrix, int noOfRows, int noOfColumns) {
+    public static int[][] reverseEachRowMatrix(int[][] matrix, int noOfRows, int noOfColumns) {
         for (int i = 0; i < noOfRows; i++) {
             for (int j = 0; j < noOfColumns / 2; j++) {
                 int temp = matrix[i][j];
