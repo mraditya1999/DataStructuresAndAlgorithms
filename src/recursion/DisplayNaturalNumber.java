@@ -9,7 +9,7 @@ public class DisplayNaturalNumber {
         int N = sc.nextInt();
 
         System.out.print("Ascending Order: ");
-        displayAscendingOrder(N);
+        displayInAscendingOrder(N);
 
         System.out.println();
 
@@ -17,9 +17,9 @@ public class DisplayNaturalNumber {
         displayInDescendingOrder(N);
     }
 
-    public static void displayAscendingOrder(int N) {
+    public static void displayInAscendingOrder(int N) {
         if (N == 0) return;
-        displayAscendingOrder(N - 1);
+        displayInAscendingOrder(N - 1);
         System.out.print(N + " ");
     }
 
