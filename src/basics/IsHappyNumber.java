@@ -6,16 +6,14 @@ public class IsHappyNumber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the lower bound of the range: ");
-        int lowerBound = sc.nextInt();
+        System.out.print("Enter Number: ");
+        int N = sc.nextInt();
 
-        System.out.print("Enter the upper bound of the range: ");
-        int upperBound = sc.nextInt();
-
-        findHappyNumbersInRange(lowerBound, upperBound);
+        boolean isHappy = isHappy(N);
+        System.out.println("Is Happy: " + isHappy);
     }
 
-    public static boolean isHappyNumber(int N) {
+    public static boolean isHappy(int N) {
         for (int i = 0; i < 10; i++) {
             int sum = 0;
 
@@ -33,13 +31,5 @@ public class IsHappyNumber {
         return false;
     }
 
-    public static void findHappyNumbersInRange(int lowerBound, int upperBound) {
-        System.out.println("Happy numbers in the range [" + lowerBound + ", " + upperBound + "]:");
-        for (int i = lowerBound; i <= upperBound; i++) {
-            if (isHappyNumber(i)) {
-                System.out.print(i + " ");
-            }
-        }
-        System.out.println();
-    }
+
 }
