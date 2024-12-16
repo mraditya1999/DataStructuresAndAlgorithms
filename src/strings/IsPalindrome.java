@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class IsPalindrome {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter String: ");
-        String str = sc.next();
+        String str = StringOperations.takeStringInput();
 
         String reversedString = reverseString(str);
         boolean isPalindrome1 = isPalindrome(str, reversedString);

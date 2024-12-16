@@ -5,10 +5,7 @@ import java.util.Scanner;
 
 public class ReturnAllSubsequences {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter String: ");
-        String inputString = scanner.next();
+        String inputString = StringOperations.takeStringInput();
 
         ArrayList<String> subsequences = getAllSubsequences(inputString);
         for (String subsequence : subsequences) {

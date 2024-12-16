@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class ReverseString {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter String: ");
-        String str = sc.next();
+        String str = StringOperations.takeStringInput();
         System.out.println("Before: " + str);
 
         String reversedString1 = reverseStringMethod1(str);

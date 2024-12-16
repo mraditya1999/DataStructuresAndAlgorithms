@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class RemoveAllOccurrences {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter String: ");
-        String str = sc.nextLine();
+        String str = StringOperations.takeStringInput();
 
         System.out.print("Enter target character: ");
-        char target = sc.next().charAt(0);
+        char target = StringOperations.takeCharacterInput();
 
         String ans = removeAllOccurrences(str, target, 0);
         System.out.println("After removing '" + target + "' from \"" + str + "\": " + ans);
