@@ -36,7 +36,7 @@ public class ReturnAllSubsequences {
     }
 
     public static void displayAllSubsequences(String str, String ans) {
-        if (str.length() == 0) {
+        if (str.isEmpty()) {
             System.out.print(ans + " ");
             return;
         }
