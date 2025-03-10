@@ -5,31 +5,34 @@ import java.util.Scanner;
 public class IsArmstrongNumber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Number: ");
+
+        System.out.print("Enter a number to check armstrong: ");
         int N = sc.nextInt();
 
-        int totalNoOfDigits = countTotalNoOfDigits(N);
-        boolean isArmstrong = isArmstrong(N, totalNoOfDigits);
-        System.out.println("Is Armstrong: " + isArmstrong);
+        boolean isArmstrongNumber = isArmstrongNumber(N);
+        System.out.println("Is " + N + " Armstrong number: " + isArmstrongNumber);
     }
 
-    public static int countTotalNoOfDigits(int N) {
-        int count = 0;
-        while (N != 0) {
-            count++;
-            N = N / 10;
+    static int countTotalNumberOfDigits(int N){
+        int totalNoOfDigits = 0;
+        while(N != 0){
+            totalNoOfDigits++;
+            N = N/10;
         }
-        return count;
+        return totalNoOfDigits;
     }
 
-    public static boolean isArmstrong(int N, int totalNoOfDigits) {
-        int sum = 0;
+    static boolean isArmstrongNumber(int N){
         int temp = N;
-        while (temp != 0) {
-            int rem = temp % 10;
-            sum += (int) Math.pow(rem, totalNoOfDigits);
+        int armstrongNumber = 0;
+        int totalNoOfDigits = BasicOperations.countTotalNumberOfDigits(N);
+
+        while(temp != 0){
+            int remainder = temp % 10;
+            armstrongNumber = armstrongNumber + (int) Math.pow(remainder,totalNoOfDigits);
             temp = temp / 10;
         }
-        return sum == N;
+
+        return armstrongNumber == N;
     }
 }

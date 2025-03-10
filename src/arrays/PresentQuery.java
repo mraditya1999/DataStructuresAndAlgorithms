@@ -1,88 +1,54 @@
 package arrays;
-
 import java.util.Scanner;
 
 public class PresentQuery {
-
     public static void main(String[] args) {
-        int[] arr = {5, 6, 5, 400, 560, 1000, 400};
+        int length = ArrayOperations.getArrayLength();
+        int[] arr =  ArrayOperations.initializeArray(length);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of queries: ");
-        int numOfQueries = sc.nextInt();
+        System.out.print("Enter " + length + " elements: ");
+        ArrayOperations.populateArray(arr, length);
 
-        System.out.println("1.Method1\t2.Method2");
-        int choice = sc.nextInt();
-
-        switch (choice) {
-            case 1:
-                executeQueryMethod1(arr, numOfQueries);
-                break;
-            case 2:
-                executeQueryMethod2(arr, numOfQueries);
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-        }
+        int[] queries = getQueries();
+        checkPresence(arr, queries);
     }
 
-    public static void executeQueryMethod1(int[] arr, int queries) {
+    public static int[] getQueries() {
         Scanner sc = new Scanner(System.in);
 
-        while (queries > 0) {
-            System.out.print("Enter key: ");
-            int key = sc.nextInt();
+        System.out.print("Enter the total number of queries you want to run: ");
+        int queries = sc.nextInt();
+        int[] queryValue = new int[queries];
 
-            if (isPresent(arr, key)) {
-                System.out.println(key + " is present");
-            } else {
-                System.out.println(key + " is not present");
-            }
-            queries--;
+        System.out.print("Enter " + queries + " values: ");
+        for (int i = 0; i < queries; i++) {
+            queryValue[i] = sc.nextInt();
         }
+        return queryValue;
     }
 
-    public static void executeQueryMethod2(int[] arr, int queries) {
-        int[] frequencyArr = buildFrequencyArray(arr);
+     static void checkPresence(int[] arr, int[] queries) {
+        boolean[] presenceArray = new boolean[100000];
 
-        Scanner sc = new Scanner(System.in);
-
-        while (queries > 0) {
-            System.out.print("Enter key: ");
-            int key = sc.nextInt();
-
-            if (key >= 0 && key < frequencyArr.length) {
-                if (frequencyArr[key] == 0) {
-                    System.out.println(key + " is not present");
-                } else {
-                    System.out.println(key + " is present");
-                }
-            } else {
-                System.out.println("Key out of range.");
-            }
-            queries--;
-        }
+        markPresence(arr, presenceArray);
+        processQueries(queries, presenceArray);
     }
 
-    public static int[] buildFrequencyArray(int[] arr) {
-        int maxValue = 100000; // Given constraint
-        int[] frequencyArr = new int[maxValue];
-
+     static void markPresence(int[] arr, boolean[] presenceArray) {
         for (int value : arr) {
-            if (value >= 0 && value < maxValue) {
-                frequencyArr[value]++;
+            if (value < 100000) {
+                presenceArray[value] = true;
             }
         }
-        return frequencyArr;
     }
 
-    public static boolean isPresent(int[] arr, int key) {
-        for (int value : arr) {
-            if (value == key) {
-                return true;
+    private static void processQueries(int[] queries, boolean[] presenceArray) {
+        for (int query : queries) {
+            if (query < 100000 && presenceArray[query]) {
+                System.out.println(query + " is present in the array.");
+            } else {
+                System.out.println(query + " is not present in the array.");
             }
         }
-        return false;
     }
 }

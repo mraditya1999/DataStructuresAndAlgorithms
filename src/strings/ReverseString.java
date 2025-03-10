@@ -4,46 +4,60 @@ import java.util.Scanner;
 
 public class ReverseString {
     public static void main(String[] args) {
-        String str = StringOperations.takeStringInput();
-        System.out.println("Before: " + str);
+        Scanner sc = new Scanner(System.in);
 
-        String reversedString1 = reverseStringMethod1(str);
-        System.out.println("After Method1: " + reversedString1);
+        System.out.print("Enter string to reverse: ");
+        String str = sc.next();
 
-        String reversedString2 = reverseStringMethod2(str);
-        System.out.println("After Method2: " + reversedString2);
+        // String reversedStr1 = reverseString1(str);
+        // String reversedStr2 = reverseString2(str);
+        // String reversedStr3 = reverseString3(str);
+        String reversedStr4 = reverseString4(str);
 
-        String reversedString3 = reverseStringMethod3(str, 0);
-        System.out.println("After Method3: " + reversedString3);
-
+        System.out.println("reverse of : "+ str + " is: " + reversedStr4);
     }
 
-    public static String reverseStringMethod1(String str) {
+    public static String reverseString1(String str){
         String reversedStr = "";
-        for (int i = str.length() - 1; i >= 0; i--) {
+        for(int i = str.length()-1; i >= 0 ;i--){
             char ch = str.charAt(i);
             reversedStr += ch;
         }
         return reversedStr;
     }
 
-    public static String reverseStringMethod2(String str) {
-        char[] charArray = str.toCharArray();
-        int start = 0;
-        int end = charArray.length - 1;
+    public static String reverseString2(String str){
+        String reversedStr = "";
+        for(int i = 0; i < str.length() ;i++){
+            char ch = str.charAt(i);
+            reversedStr = ch + reversedStr;
+        }
+        return reversedStr;
+    }
 
-        while (start < end) {
-            char ch = charArray[start];
-            charArray[start] = charArray[end];
-            charArray[end] = ch;
+    public static String reverseString3(String str){
+        StringBuilder reversedStr = new StringBuilder("");
+        for(int i = str.length()-1; i >= 0 ;i--){
+            char ch = str.charAt(i);
+            reversedStr.append(ch);
+        }
+        return reversedStr.toString();
+    }
+
+    public static String reverseString4(String str){
+        StringBuilder reversedStr = new StringBuilder(str);
+        int start = 0;
+        int end = reversedStr.length() - 1;
+
+        while(start < end){
+            char startChar = reversedStr.charAt(start);
+            char endChar = reversedStr.charAt(end);
+
+            reversedStr.setCharAt(start,endChar);
+            reversedStr.setCharAt(end,startChar);
             start++;
             end--;
         }
-        return new String(charArray);
-    }
-
-    public static String reverseStringMethod3(String str, int index) {
-        if (index == str.length()) return "";
-        return reverseStringMethod3(str, index + 1) + str.charAt(index);
+        return reversedStr.toString();
     }
 }

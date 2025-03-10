@@ -1,8 +1,7 @@
 package strings;
-
 import java.util.Arrays;
 
-public class StringMethods {
+public class    StringMethods {
     public static void main(String[] args) {
         String str = "this is a string ";
         String str1 = "Aditya";
@@ -10,12 +9,12 @@ public class StringMethods {
         int number = 242;
 
         //        convert character array into string
-        char[] charArray = {'a', 'b', 'c', 'd'};
+        char[] charArray = {'a','b','c','d'};
         String charStr = new String(charArray);
         System.out.println(charStr);
 
         //        convert byte array into string
-        byte[] byteArray = {65, 66, 67, 68, 69};
+        byte[] byteArray = {65,66,67,68,69};
         String byteStr = new String(byteArray);
         System.out.println(byteStr);
 

@@ -6,34 +6,55 @@ import java.util.Scanner;
 
 public class TargetSumOfThreeElements {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         int length = ArrayOperations.getArrayLength();
-
         int[] arr = ArrayOperations.initializeArray(length);
 
-        System.out.print("Enter " + length + " Elements: ");
-        ArrayOperations.populateArray(arr, length);
+        System.out.print("Enter " + length + " elements: ");
+        ArrayOperations.populateArray(arr,length);
 
-        System.out.print("Enter value of Target sum: ");
-        int targetSum = sc.nextInt();
-
-        int totalNoOfPairs = countNoOfPairsTargetSum(arr, length, targetSum);
-        System.out.println("Total No. Of Triplets Equal to Target sum is: " + totalNoOfPairs);
+        int targetValue = getTargetValue();
+        int targetSum1 = targetSumMethod1(arr,length,targetValue);
+        System.out.println("Total no. of pairs whose sum is equal to: " + targetValue + " is: " + targetSum1);
     }
 
-    public static int countNoOfPairsTargetSum(int[] arr, int length, int targetSum) {
+    static int getTargetValue(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter target value: ");
+        return sc.nextInt();
+    }
+
+    //  Find the total no. of pairs in the array whose sum is equal to the given value x
+    static int targetSumMethod1(int[] arr, int length, int targetValue){
         int count = 0;
-        for (int i = 0; i < length - 2; i++) {
-            for (int j = i + 1; j < length - 1; j++) {
-                for (int l = j + 1; l < length; l++) {
-                    if (arr[i] + arr[j] + arr[l] == targetSum) {
-                        System.out.print("(" + arr[i] + "," + arr[j] + "," + arr[l] + ")");
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j < length; j++) {
+                for (int k = j + 1; k < length ; k++) {
+                    int sum = arr[i] + arr[j] + arr[k];
+                        if(sum == targetValue) {
+                            count++;
+                            System.out.print("Index of pairs is: ");
+                            System.out.println("(" +  i + " , " + j + " , " + k +")");
+                        }
+                }
+            }
+        }
+        return count;
+    }
+
+    static int targetSumMethod2(int[] arr, int length, int targetValue){
+        int count = 0;
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j < length; j++) {
+                for (int k = j + 1; k < length ; k++) {
+                    int sum = arr[i] + arr[j] + arr[k];
+                    if(sum == targetValue) {
                         count++;
+                        System.out.print("Index of pairs is: ");
+                        System.out.println("(" +  i + " , " + j + " , " + k +")");
                     }
                 }
             }
         }
-        System.out.println();
         return count;
     }
 }

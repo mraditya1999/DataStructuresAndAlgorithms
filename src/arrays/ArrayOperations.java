@@ -1,29 +1,28 @@
 package arrays;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayOperations {
     public static void main(String[] args) {
-        int length = 5;
-        int[] arr1 = {1, 3, 5, 7, 9};
+            int length = 5;
+            int[] arr1 = {1,3,5,7,9};
 
-        // Array Methods
-        int[] arr2 = arr1.clone();
-        int[] arr3 = Arrays.copyOf(arr1, length);
-        int[] arr4 = Arrays.copyOfRange(arr1, 1, 4);
+            // Array Methods
+            int[] arr2 = arr1.clone();
+            int[] arr3 = Arrays.copyOf(arr1,length);
+            int[] arr4 = Arrays.copyOfRange(arr1,1,4);
 
-        System.out.print("Array1: ");
-        ArrayOperations.printArray(arr1, length);
-        System.out.print("Array2: ");
-        ArrayOperations.printArray(arr2, length);
-        System.out.print("Array3: ");
-        ArrayOperations.printArray(arr3, length);
-        System.out.print("Array4: ");
-        ArrayOperations.printArray(arr4, 3);
+            System.out.print("Array1: ");
+            ArrayOperations.printArray(arr1,length);
+            System.out.print("Array2: ");
+            ArrayOperations.printArray(arr2,length);
+            System.out.print("Array3: ");
+            ArrayOperations.printArray(arr3,length);
+            System.out.print("Array4: ");
+            ArrayOperations.printArray(arr4,3);
     }
 
-    public static int getArrayLength() {
+    public static  int getArrayLength() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter length of Array: ");
         return sc.nextInt();
@@ -60,7 +59,7 @@ public class ArrayOperations {
         }
     }
 
-    public static void swap(int[] arr, int index1, int index2) {
+    public static void swap(int[] arr, int index1,int index2){
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
@@ -76,20 +75,21 @@ public class ArrayOperations {
 
     static float calculateAverage(int[] arr, int length) {
         int sum = calculateTotalSum(arr, length);
-        return (float) sum / length;
+        return (float)sum / length;
     }
 
-    public static boolean searchElement(int[] arr, int length, int key) {
+    public static boolean searchElement(int[] arr, int length, int key){
         int start = 0;
         int end = length - 1;
 
-        while (start <= end) {
+        while(start <= end){
             int mid = (start + end) / 2;
-            if (arr[mid] == key) {
+            if(arr[mid] == key){
                 return true;
-            } else if (arr[mid] > key) {
+            }
+            else if(arr[mid] > key){
                 end = mid - 1;
-            } else {
+            }else{
                 start = mid + 1;
             }
         }

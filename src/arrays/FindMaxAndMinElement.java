@@ -1,36 +1,32 @@
 package arrays;
 
-import java.util.Scanner;
-
 public class FindMaxAndMinElement {
     public static void main(String[] args) {
         int length = ArrayOperations.getArrayLength();
-
         int[] arr = ArrayOperations.initializeArray(length);
 
-        System.out.print("Enter " + length + " Elements: ");
-        ArrayOperations.populateArray(arr, length);
+        System.out.print("Enter " + length + " elements: ");
+        ArrayOperations.populateArray(arr,length);
 
-        int minElement = findMinElement(arr, length);
-        int maxElement = findMaxElement(arr, length);
-
-        System.out.println("Min Element: " + minElement);
-        System.out.println("Max Element: " + maxElement);
+        int maxValue = findMaxValue(arr, length);
+        int minValue = findMinValue(arr, length);
+        System.out.println("Max element is: " + maxValue);
+        System.out.println("Min element is: " + minValue);
     }
 
-    public static int findMinElement(int[] arr, int length) {
-        int minElement = Integer.MAX_VALUE;
+    static int findMaxValue(int[] arr, int length) {
+        int maxValue = arr[0];
         for (int i = 0; i < length; i++) {
-            if (arr[i] < minElement) minElement = arr[i];
+            if (arr[i] > maxValue) maxValue = arr[i];
         }
-        return minElement;
+        return maxValue;
     }
 
-    public static int findMaxElement(int[] arr, int length) {
-        int maxElement = Integer.MIN_VALUE;
-        for (int i = 0; i < length; i++) {
-            if (arr[i] > maxElement) maxElement = arr[i];
+    static int findMinValue(int[] arr,int length) {
+        int minValue = arr[0];
+        for (int i = 0; i < length ; i++) {
+            if (arr[i] < minValue) minValue = arr[i];
         }
-        return maxElement;
+        return minValue;
     }
 }

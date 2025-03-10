@@ -1,111 +1,112 @@
 package arrays.two_pointers;
 
 import arrays.ArrayOperations;
-
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class SetOperations {
     public static void main(String[] args) {
-        int[] arr1 = {1, 2, 2, 3, 4};
-        int[] arr2 = {2, 2, 3, 4, 4};
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Intersection: ");
-        int[] intersectionArray = intersectionOfTwoSortedArrays(arr1, arr2);
-        ArrayOperations.printArray(intersectionArray, intersectionArray.length);
+        System.out.println("1. Union");
+        System.out.println("2. Intersection");
+        System.out.println("3. Difference");
+        System.out.print("Select operation to perform: ");
+        int choice = scanner.nextInt();
 
-        System.out.print("Union: ");
-        int[] unionArray = unionOfTwoSortedArrays(arr1, arr2);
-        ArrayOperations.printArray(unionArray, unionArray.length);
+        int length1 = ArrayOperations.getArrayLength();
+        int[] arr1 = ArrayOperations.initializeArray(length1);
+        System.out.print("Enter " + length1 + " elements of First array: ");
+        ArrayOperations.populateArray(arr1, length1);
 
-        System.out.print("Difference: ");
-        int[] differenceArray = differenceOfTwoSortedArrays(arr1, arr2);
-        ArrayOperations.printArray(differenceArray, differenceArray.length);
+        int length2 = ArrayOperations.getArrayLength();
+        int[] arr2 = ArrayOperations.initializeArray(length2);
+        System.out.print("Enter " + length2 + " elements of Second array: ");
+        ArrayOperations.populateArray(arr2, length2);
+
+        int[] ans = ArrayOperations.initializeArray(length1 + length2);
+        int length = 0;
+
+        switch (choice) {
+            case 1:
+                length = findUnionOfTwoSortedArray(arr1, arr2, length1, length2, ans);
+                System.out.print("Union of the two arrays is: ");
+                break;
+            case 2:
+                length = findIntersectionOfTwoSortedArray(arr1, arr2, length1, length2, ans);
+                System.out.print("Intersection of the two arrays is: ");
+                break;
+            case 3:
+                length = findDifferenceOfTwoSortedArray(arr1, arr2, length1, length2, ans);
+                System.out.print("Difference of the two arrays is: ");
+                break;
+            default:
+                System.out.println("Invalid choice");
+                return;
+        }
+        ArrayOperations.printArray(ans, length);
     }
 
-    public static int[] unionOfTwoSortedArrays(int[] arr1, int[] arr2) {
-        int length1 = arr1.length;
-        int length2 = arr2.length;
-
-        int i = 0;
-        int j = 0;
-        int k = 0;
-        int[] tempArray = new int[length1 + length2];
+    static int findUnionOfTwoSortedArray(int[] arr1, int[] arr2, int length1, int length2, int[] ans) {
+        int i = 0, j = 0, index = 0;
 
         while (i < length1 && j < length2) {
             if (arr1[i] < arr2[j]) {
-                tempArray[k++] = arr1[i++];
-            } else if (arr2[j] < arr1[i]) {
-                tempArray[k++] = arr2[j++];
+                ans[index++] = arr1[i++];
+            } else if (arr1[i] > arr2[j]) {
+                ans[index++] = arr2[j++];
             } else {
-                if (k == 0 || tempArray[k - 1] != arr1[i]) {
-                    tempArray[k++] = arr1[i];
-                }
+                ans[index++] = arr1[i];
                 i++;
                 j++;
             }
         }
 
         while (i < length1) {
-            if (k == 0 || tempArray[k - 1] != arr1[i])
-                tempArray[k++] = arr1[i];
-            i++;
+            ans[index++] = arr1[i++];
         }
 
         while (j < length2) {
-            if (k == 0 || tempArray[k - 1] != arr2[j])
-                tempArray[k++] = arr2[j];
-            j++;
+            ans[index++] = arr2[j++];
         }
 
-        return Arrays.copyOf(tempArray, k);
+        return index;
     }
 
-    public static int[] intersectionOfTwoSortedArrays(int[] arr1, int[] arr2) {
-        int length1 = arr1.length;
-        int length2 = arr2.length;
-
-        int i = 0;
-        int j = 0;
-        int k = 0;
-        int[] tempArray = new int[Math.min(length1, length2)];
+    static int findIntersectionOfTwoSortedArray(int[] arr1, int[] arr2, int length1, int length2, int[] ans) {
+        int i = 0, j = 0, index = 0;
 
         while (i < length1 && j < length2) {
-            if (arr1[i] < arr2[j]) i++;
-            else if (arr2[j] < arr1[i]) j++;
-            else {
-                if (k == 0 || tempArray[k - 1] != arr1[i])
-                    tempArray[k++] = arr1[i];
+            if (arr1[i] < arr2[j]) {
+                i++;
+            } else if (arr1[i] > arr2[j]) {
+                j++;
+            } else {
+                ans[index++] = arr1[i];
                 i++;
                 j++;
             }
         }
-
-        return Arrays.copyOf(tempArray, k);
+        return index;
     }
 
-    public static int[] differenceOfTwoSortedArrays(int[] arr1, int[] arr2) {
-        int length1 = arr1.length;
-        int length2 = arr2.length;
-
-        int i = 0;
-        int j = 0;
-        int k = 0;
-        int[] tempArray = new int[length1];
+    static int findDifferenceOfTwoSortedArray(int[] arr1, int[] arr2, int length1, int length2, int[] ans) {
+        int i = 0, j = 0, index = 0;
 
         while (i < length1 && j < length2) {
             if (arr1[i] < arr2[j]) {
-                tempArray[k++] = arr1[i++];
-            } else if (arr1[i] == arr2[j]) {
-                i++;
+                ans[index++] = arr1[i++];
+            } else if (arr1[i] > arr2[j]) {
                 j++;
             } else {
+                i++;
                 j++;
             }
         }
 
         while (i < length1) {
-            tempArray[k++] = arr1[i++];
+            ans[index++] = arr1[i++];
         }
-        return Arrays.copyOf(tempArray, k);
+
+        return index;
     }
 }

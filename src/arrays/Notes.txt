@@ -1,0 +1,21 @@
+- All values of array will be 0 by default.
+- Once Array is created it cannot be modified.
+- We can create another array of bigger size and copy previous array.
+- Arrays always be created in heap.
+- Every array has length property which store array length.
+- int a [] = new int [5]; OR int[] a = new int [5]; OR int a[] = {1,2,3,4,5}.
+- forEach Loop cannot modify the array values.
+- int [] a - reference variable which stores address of array (present in heap).
+- new int [5]- memory allocated in heap.
+
+** Shallow Copy **
+- A shallow copy of an object copies the object itself and references to other objects that the original object references.
+- This means that the shallow copy and the original object share references to the same objects.
+- Leading to potential side effects, if one of them modifies a shared object.
+- Both the original and the shallow copy will reference the same nested objects.
+
+** Deep Copy **
+- A deep copy of an object copies the object itself and also creates copies of all objects referenced by the original object.
+- This means that the deep copy and the original object do not share references to the same objects.
+- Modifications in one will not affect the other.
+- Both the original and the deep copy will reference their own separate instances of nested objects.

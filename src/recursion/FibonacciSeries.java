@@ -5,33 +5,26 @@ import java.util.Scanner;
 public class FibonacciSeries {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number: ");
-        int N = sc.nextInt();
-        sc.close();
-
-        // Print the Nth Fibonacci term
-        int nthTerm = findNthFibonacci(N);
-        System.out.println("Nth Fibonacci term is: " + nthTerm);
-
-        // Print the entire Fibonacci series up to N terms
-        System.out.print("Fibonacci series up to N terms: ");
-        for (int i = 1; i <= N; i++) {
-            System.out.print(findNthFibonacci(i) + " ");
+        System.out.print("Enter no. of terms in the Fibonacci series: ");
+        int terms = sc.nextInt();
+        int a = 0;
+        int b = 1;
+        if(terms == 1){
+            System.out.print(a + " ");
+            return;
+        }else{
+            System.out.print(a + " " + b + " ");
         }
-        System.out.println();
-
-        // Print the sum of the entire Fibonacci series up to N terms
-        int sum = 0;
-        for (int i = 1; i <= N; i++) {
-            sum += findNthFibonacci(i);
-        }
-        System.out.println("Sum of Fibonacci series up to N terms: " + sum);
+        fibonacci(a, b,terms - 2);
     }
 
-    public static int findNthFibonacci(int N) {
-        if (N == 1 || N == 2) {
-            return N - 1;
+    static void fibonacci(int a, int b, int n) {
+        if (n == 0) {
+            return;
         }
-        return findNthFibonacci(N - 1) + findNthFibonacci(N - 2);
+
+        int c = a + b;
+        System.out.print(c + " ");
+        fibonacci(b , c , n-1 );
     }
 }

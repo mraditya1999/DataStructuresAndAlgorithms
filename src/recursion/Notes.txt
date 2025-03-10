@@ -1,0 +1,13 @@
+Recursion - When a function calls itself is known as Recursion
+1step - base condition
+2step - recursive step
+
+
+Types of recursion
+
+1.Tail Recursion (calling itself in last statement of a function)
+2.Head  Recursion (calling itself in first statement of a function)
+3.Linear Recursion (calling itself only one time)
+3.Tree Recursion (calling itself more than one time)
+4.Indirect Recursion - (more than 1 function calling one another)
+5.Nested Recursion (calls itself as a parameter to another invocation of itself)

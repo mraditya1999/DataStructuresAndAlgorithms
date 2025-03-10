@@ -1,0 +1,14 @@
+** Stable sort **
+- A sorting algorithm is stable if it maintains the relative order of records with equal keys (i.e., values).
+- If two items have the same value and appear in a certain order in the input, they will remain in that order in the output.
+- eg: bubble sort, insertion sort, merge sort, time sort
+
+** Unstable Sort **
+- A sorting algorithm is unstable if it does not maintain the relative order of records with equal keys.
+- This means that items with the same value may not appear in the same order in the output as they do in the input.
+- eg: quick sort, heap sort, selection sort
+
+1) bubble sort => worst case - O(n2) | best case - O(n) | in-place algorithm
+2) selection sort => worst case - O(n2) | best case - O(n2) | in-place algorithm
+3) insertion sort => worst case - O(n2) | best case - O(n) | in-place algorithm
+

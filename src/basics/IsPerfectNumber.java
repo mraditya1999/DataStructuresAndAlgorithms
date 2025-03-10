@@ -1,22 +1,24 @@
 package basics;
-
 import java.util.Scanner;
 
 public class IsPerfectNumber {
+//    A perfect number is a positive integer equal to the total of its positive divisors, except the number itself.
+//    For example, 6 is a perfect number since 1 + 2 + 3 equals 6.
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter Number: ");
+        System.out.print("Enter a number to check perfect: ");
         int N = sc.nextInt();
 
-        boolean isPerfect = isPerfect(N);
-        System.out.println("Is Perfect: " + isPerfect);
+        boolean isPerfectNumber = isPerfectNumber(N);
+        System.out.println("Is " + N + " Perfect number: " + isPerfectNumber);
     }
 
-    public static boolean isPerfect(int N) {
+    static boolean isPerfectNumber(int N){
         int sum = 0;
-        for (int i = 1; i < N; i++) {
-            if (N % i == 0) sum += i;
+        for (int divisor = 1;divisor < N; divisor++){
+            if(N % divisor == 0)
+                sum = sum + divisor;
         }
         return sum == N;
     }

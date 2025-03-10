@@ -4,57 +4,48 @@ import arrays.ArrayOperations;
 
 public class ZeroesAndOnes {
     public static void main(String[] args) {
-        int[] arr = {1, 1, 0, 1, 0, 0, 1, 1, 0};
+        int[] arr = {1,0,0,1,1,0,0,0,1,1,0,1};
+        int length = arr.length;
 
-        System.out.print("Before: ");
-        ArrayOperations.printArray(arr, arr.length);
+        System.out.print("Before Rearranging: ");
+        ArrayOperations.printArray(arr,length);
 
-//        zeroesAndOnesMethod1(arr);
-//        zeroesAndOnesMethod2(arr);
-        zeroesAndOnesMethod3(arr);
+        rearrangeZeroesAndOnesMethod1(arr,length);
 
-        System.out.print("After: ");
-        ArrayOperations.printArray(arr, arr.length);
+        System.out.print("After Rearranging: ");
+        ArrayOperations.printArray(arr,length);
     }
 
-    public static void zeroesAndOnesMethod1(int[] arr) {
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 0) count++;
+    static void rearrangeZeroesAndOnesMethod1(int[] arr, int length){
+        int leftIndex = 0;
+        int rightIndex = length - 1;
+
+        while (leftIndex < rightIndex){
+            int leftNumber = arr[leftIndex];
+            int rightNumber = arr[rightIndex];
+
+            if(leftNumber == 1 && rightNumber == 0) {
+                ArrayOperations.swap(arr,leftIndex,rightIndex);
+                leftIndex++;
+                rightIndex--;
+            }
+            if(arr[leftIndex] == 0) leftIndex++;
+            if(arr[rightIndex] == 1) rightIndex--;
+        }
+    }
+
+    static void rearrangeZeroesAndOnesMethod2(int[] arr, int length){
+        int zeroCount = 0;
+        for (int element : arr){
+            if(element == 0) zeroCount++;
         }
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < zeroCount; i++) {
             arr[i] = 0;
         }
-        for (int i = count; i < arr.length; i++) {
+
+        for (int i = zeroCount; i < length; i++) {
             arr[i] = 1;
-        }
-    }
-
-    public static void zeroesAndOnesMethod2(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            boolean flag = false;
-            for (int j = 0; j < arr.length - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    ArrayOperations.swap(arr, j, j + 1);
-                    flag = true;
-                }
-            }
-            if (!flag) break;
-        }
-    }
-
-    public static void zeroesAndOnesMethod3(int[] arr) {
-        int start = 0;
-        int end = arr.length - 1;
-        while (start < end) {
-            if (arr[start] == 0) start++;
-            if (arr[end] == 1) end--;
-            else {
-                ArrayOperations.swap(arr, start, end);
-                start++;
-                end--;
-            }
         }
     }
 }

@@ -1,0 +1,58 @@
+- java is hybrid language means it will compiled as well as interpreted language.
+
+- "first.java" file compiled by compiler(javac).
+- "first.class" which contains bytecode and does not understand by machine.
+- So JVM uses Just-In-Time(JIT) compiler which interprets the byte code into machine code.
+- For converting byte code into machine code, we need JVM.
+- Hence, Java is platform Independent, but JVM is platform dependent.
+
+- JDK(Java Development Kit) = JRE(Java Runtime Environment) + Development Tools
+- JRE(Java Runtime Environment) = JVM(Java Virtual Machine) + Library Classes
+- JVM(Java Virtual Machine) = JIT(Just-In-Time compiler(same as interpreter, but faster))
+
+1) JDK(Java Development Kit)
+- provides environment to develop and run the java program
+- It is a package that includes:
+a) development tools - to provide an environment to develop our program
+b) JRE = to execute our program
+c) javac - a compiler to convert into byte code
+d) archives - jar
+e) javadoc - docs generator
+f) interpreter, loader
+
+
+2) JRE(Java Runtime Environment)
+- It is installation package that provides an environment to only run the java program
+- It is a package that includes:
+a) Deployment technologies
+b) User Interface toolkits
+c) Integration libraries
+d) Base libraries
+e) JVM(Java Virtual Machine)
+- After, we get ".class" file, then
+a) class loader loads all classes needed to execute the program
+b) JVM sends code to byte code verifier to check the format of code
+
+
+There are 3 section in memory :-
+
+1) Method Area(code section) - where we load the methods in memory with the help of ClassLoader.
+2) Stack section - where all static variables created and stored.
+3) Heap section - where all the objects are created and stored;
+
+- Classloader have 3 parts :-
+
+1) Loading
+- reads .class file and generate binary data
+-  an object of this class is created in heap
+2) Linking
+- JVM verifies the .class file
+- allocates memory for class variables and default values
+
+- replace symbolic references from the type with direct references
+3) Initialization
+-  all static variables are assigned with their values defined in the code.
+
+
+Working at runtime -
+classLoader -> byte code verifier -> Interpreter -> Runtime -> Hardware
